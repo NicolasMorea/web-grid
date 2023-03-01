@@ -1,3 +1,5 @@
+// Nicolas MOREAU
+
 document.addEventListener("DOMContentLoaded", () => {
   // Initial clean up. DO NOT REMOVE.
   initialCleanup();
@@ -8,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
   originalSquare = 30
   blueSquare = 0
   clickedSquare = 0
-
 
   
   // Hey! Pssst! In here ...
@@ -51,12 +52,25 @@ function getRandomColor() {
 
 function ChangeColor(item, color) {
   if(color == "blue"){
-    if(item.style.backgroundColor == "lightcoral"){
-      
+    if(item.style.backgroundColor != "blue"){
+      blueSquare +=1
+      originalSquare -=1
+    }
+  }
+  else{
+    if(item.style.backgroundColor == "blue"){
+      clickedSquare +=1
+      blueSquare -= 1
+    }
+    else if(item.style.backgroundColor == "lightcoral"){
+      clickedSquare +=1
+      originalSquare -= 1
     }
   }
   Actualize();
   item.style.backgroundColor = color;
+  if(!(color == "blue" && item.style.backgroundColor != "lightcoral")){
+  }
 }
 function Actualize(){
   document.getElementById("totalSquareNumber").innerHTML = "Total Squares = " + squareNumber.toString();
