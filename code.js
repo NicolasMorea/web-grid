@@ -1,7 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Initial clean up. DO NOT REMOVE.
   initialCleanup();
+  document.getElementById("btn-add-line").addEventListener('click', () => AddLine())
+  AddEventLisneteners();
 
+  squareNumber = 30
+  originalSquare = 30
+  blueSquare = 0
+  clickedSquare = 0
+
+
+  
   // Hey! Pssst! In here ...
 });
 
@@ -22,3 +31,49 @@ function initialCleanup() {
     node.remove();
   }
 }
+function AddEventLisneteners() {
+  const grid = document.getElementById("grid");
+  var boxes = grid.childNodes;
+  for(const item of boxes){
+    item.addEventListener('click', () => ChangeColor(item, getRandomColor()));
+    item.addEventListener("mouseover", () => ChangeColor(item, "blue"));
+  }
+}
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+function ChangeColor(item, color) {
+  if(color == "blue"){
+    if(item.style.backgroundColor == "lightcoral"){
+      
+    }
+  }
+  Actualize();
+  item.style.backgroundColor = color;
+}
+function Actualize(){
+  document.getElementById("totalSquareNumber").innerHTML = "Total Squares = " + squareNumber.toString();
+  document.getElementById("originalSquareNumber").innerHTML = "Original Squares = " + originalSquare.toString();
+  document.getElementById("blueSquareNumber").innerHTML = "Blue Squares = " + blueSquare.toString();
+  document.getElementById("clickedSquareNumber").innerHTML = "Clicked Squares = " + clickedSquare.toString();
+}
+function AddLine() {
+  console.log("adding a line");
+  const grid = document.getElementById("grid");
+  for (let step = 0; step < 10; step++) {
+    box = document.createElement("div");
+    grid.appendChild(box);
+  }
+  AddEventLisneteners();
+  squareNumber += 10;
+  Actualize();
+
+}
+
